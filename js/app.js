@@ -19,6 +19,7 @@
 */
 var ul = document.querySelector('ul');
 var li = document.querySelectorAll('li');
+
 //var a = document.getElementByTagname('a');
 //var section = document.getElementByTagname('section');
 //var theParent = document.getElementByID("navbar__list");
@@ -49,42 +50,50 @@ function buildMenu(){
   ul.appendChild(createListwithAnchor('Section 3', '#section3','3'));
 }
 // Add class 'active' to section when near top of
+function setActive(){
+  window.addEventListener('scroll',(event) =>{
+    var section1 = document.getElementById('section1');
+    var section2 = document.getElementById('section2');
+    var section3 = document.getElementById('section3');
+    if ((section1.offsetTop - window.pageYOffset) > -15 && (section1.offsetTop - window.pageYOffset) < 100){
+      section1.classList.add("your-active-class");
+    } else{
+      section1.classList.remove("your-active-class");
+    }
+    if ((section2.offsetTop - window.pageYOffset) > -15 && (section2.offsetTop - window.pageYOffset) < 100){
+      section2.classList.add("your-active-class");
+    } else{
+      section2.classList.remove("your-active-class");
+    }
+    if ((section3.offsetTop - window.pageYOffset) > -15 && (section3.offsetTop - window.pageYOffset) < 100){
+      section3.classList.add("your-active-class");
+    } else{
+      section3.classList.remove("your-active-class");
+    }
+  });
+};
 
-window.addEventListener('scroll',(event) =>{
-  var section1 = document.getElementById('section1');
-  var section2 = document.getElementById('section2');
-  var section3 = document.getElementById('section3');
-  if ((section1.offsetTop - window.pageYOffset) > -15 && (section1.offsetTop - window.pageYOffset) < 100){
-    console.log(window.pageYOffset);
-    section1.classList.add("your-active-class");
-  } else{
-    section1.classList.remove("your-active-class");
-  }
-  if ((section2.offsetTop - window.pageYOffset) > -15 && (section2.offsetTop - window.pageYOffset) < 100){
-    console.log(window.pageYOffset);
-    section2.classList.add("your-active-class");
-  } else{
-    section2.classList.remove("your-active-class");
-  }
-  if ((section3.offsetTop - window.pageYOffset) > -15 && (section3.offsetTop - window.pageYOffset) < 100){
-    console.log(window.pageYOffset);
-    section3.classList.add("your-active-class");
-  } else{
-    section3.classList.remove("your-active-class");
-  }
-});
-
-
-/*
-var finder1 = document.querySelector("1");
-var finder2 = document.querySelector("2");
-var finder3 = document.querySelector("3");
-finder1.addEventListener("click", scrollToArea(374));
-finder2.addEventListener("click", scrollToArea(1379));
-
-function scrollToArea() {
-  window.scrollTo(0,i);
-}
+/*This part of the code was found on the following website:
+http://www.javascriptkit.com/javatutors/scrolling-html-bookmark-javascript.shtml
+*/
+function scrollOnClick(){
+  let links = document.querySelectorAll('a[href^="#"]');
+  //console.log(anchorlinks);
+  for (let item of links) { // relitere
+      item.addEventListener('click', (e)=> {
+          let hash = item.getAttribute('href');
+          //console.log(hash);
+          let target = document.querySelector(hash);
+          //console.log(target);
+          target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+          });
+          history.pushState(null, null, hash);
+          e.preventDefault();
+      });
+  };
+};
 
 /**
  * End Main Functions
@@ -95,5 +104,6 @@ function scrollToArea() {
 // Build menu
 buildMenu();
 // Scroll to section on link click
-
+scrollOnClick();
 // Set sections as active
+setActive();
