@@ -48,6 +48,7 @@ function buildMenu(){
   ul.appendChild(createListwithAnchor('Section 1', '#section1','1'));
   ul.appendChild(createListwithAnchor('Section 2', '#section2','2'));
   ul.appendChild(createListwithAnchor('Section 3', '#section3','3'));
+  ul.appendChild(createListwithAnchor('Section 4', '#section4','4'));
 }
 // Add class 'active' to section when near top of
 function setActive(){
@@ -55,6 +56,7 @@ function setActive(){
     var section1 = document.getElementById('section1');
     var section2 = document.getElementById('section2');
     var section3 = document.getElementById('section3');
+    var section4 = document.getElementById('section4');
     if ((section1.offsetTop - window.pageYOffset) > -15 && (section1.offsetTop - window.pageYOffset) < 100){
       section1.classList.add("your-active-class");
     } else{
@@ -69,6 +71,11 @@ function setActive(){
       section3.classList.add("your-active-class");
     } else{
       section3.classList.remove("your-active-class");
+    }
+    if ((section4.offsetTop - window.pageYOffset) > -15 && (section4.offsetTop - window.pageYOffset) < 100){
+      section4.classList.add("your-active-class");
+    } else{
+      section4.classList.remove("your-active-class");
     }
   });
 };
