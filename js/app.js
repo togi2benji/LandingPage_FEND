@@ -53,29 +53,38 @@ function buildMenu(){
 // Add class 'active' to section when near top of
 function setActive(){
   window.addEventListener('scroll',(event) =>{
+    //menuhighlight();
     var section1 = document.getElementById('section1');
     var section2 = document.getElementById('section2');
     var section3 = document.getElementById('section3');
     var section4 = document.getElementById('section4');
-    if ((section1.offsetTop - window.pageYOffset) > -15 && (section1.offsetTop - window.pageYOffset) < 100){
+    if ((section1.offsetTop - window.pageYOffset) > -100 && (section1.offsetTop - window.pageYOffset) < 200){
       section1.classList.add("your-active-class");
+      document.links[0].classList.add("active");
     } else{
       section1.classList.remove("your-active-class");
+      document.links[0].classList.remove("active");
     }
-    if ((section2.offsetTop - window.pageYOffset) > -15 && (section2.offsetTop - window.pageYOffset) < 100){
+    if ((section2.offsetTop - window.pageYOffset) > -100 && (section2.offsetTop - window.pageYOffset) < 200){
       section2.classList.add("your-active-class");
+      document.links[1].classList.add("active");
     } else{
       section2.classList.remove("your-active-class");
+      document.links[1].classList.remove("active");
     }
-    if ((section3.offsetTop - window.pageYOffset) > -15 && (section3.offsetTop - window.pageYOffset) < 100){
+    if ((section3.offsetTop - window.pageYOffset) > -100 && (section3.offsetTop - window.pageYOffset) < 200){
       section3.classList.add("your-active-class");
+      document.links[2].classList.add("active");
     } else{
       section3.classList.remove("your-active-class");
+      document.links[2].classList.remove("active");
     }
-    if ((section4.offsetTop - window.pageYOffset) > -15 && (section4.offsetTop - window.pageYOffset) < 100){
+    if ((section4.offsetTop - window.pageYOffset) > -100 && (section4.offsetTop - window.pageYOffset) < 200){
       section4.classList.add("your-active-class");
+      document.links[3].classList.add("active");
     } else{
       section4.classList.remove("your-active-class");
+      document.links[3].classList.remove("active");
     }
   });
 };
@@ -84,9 +93,9 @@ function setActive(){
 http://www.javascriptkit.com/javatutors/scrolling-html-bookmark-javascript.shtml
 */
 function scrollOnClick(){
-  let links = document.querySelectorAll('a[href^="#"]');
+  let linksa = document.querySelectorAll('a[href^="#"]');
   //console.log(anchorlinks);
-  for (let item of links) { // relitere
+  for (let item of linksa) { // relitere
       item.addEventListener('click', (e)=> {
           let hash = item.getAttribute('href');
           //console.log(hash);
@@ -101,6 +110,23 @@ function scrollOnClick(){
       });
   };
 };
+/*
+function menuhighlight(){
+  var active = 0;
+  var activeList = document.links[active];
+  for (var i = 0; i < document.links.length; i++) {
+      if (document.links[i].href === document.URL) {
+          active = i;
+          activeList.classList.add ("active");
+          console.log(activeList);
+      }
+      else{
+          activeList.classList.remove ("active");
+      }
+  }
+};
+*/
+
 
 /**
  * End Main Functions
